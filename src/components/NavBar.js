@@ -1,4 +1,4 @@
-import { React, useState, useEffect }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './NavBar.css';
 
@@ -11,8 +11,8 @@ const NavBar = () => {
     }, [location]);
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5">
-            <div class="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-5">
+            <div className="container-fluid">
                 <Link to='/' className={"navbar-brand pb-2" + (url === "/" ?"" : " pb-1")}>CMS</Link>
 
                 <ul className='navbar-nav'>
