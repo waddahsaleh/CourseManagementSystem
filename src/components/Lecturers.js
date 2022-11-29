@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Table from 'react-bootstrap/Table'
-import LecturersPopUp from './LecturersPopUp';
+import AddLecturersPopUp from './AddLecturersPopUp';
 
 const Lecturers = () => {
     const data = [
@@ -75,7 +75,7 @@ const Lecturers = () => {
     return (
         <div className='container'>
             <div className='my-5'>
-                <LecturersPopUp />
+                <AddLecturersPopUp />
 
                 {renderRow()}
             </div>
