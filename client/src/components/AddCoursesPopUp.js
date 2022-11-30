@@ -42,7 +42,7 @@ const CoursesPopUp = () => {
 
     };
 
-    const handleSubmit =  (e) => {
+    const handleSubmit =  () => {
 
         console.log("CLicked")
         // e.preventDefault();
@@ -130,7 +130,7 @@ const CoursesPopUp = () => {
                                     onChange={handleChange}/>
                             </div>
                         </div>
-                        <button type="button" className="btn btn-primary">Add</button> 
+                        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Add</button> 
                         {/* onSubmit={handleSubmit}  */}
                     </form>
                 </Modal.Body>
