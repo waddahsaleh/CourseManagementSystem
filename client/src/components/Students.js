@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 import AddStudentsPopUp from './AddStudentsPopUp';
 import StudentDetailPopUp from './StudentDetailPopUp';
 import Axios from 'axios'
+import EditStudentPopUp from './EditStudentPopUp';
 
 const Students = () => {
 
@@ -46,8 +47,9 @@ const Students = () => {
                 <td>
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
                     <StudentDetailPopUp />
-                    <button type="button" className="btn btn-outline-info m-2">Edit</button>
-                        <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.studentID)}>Remove</button>
+                    {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
+                    <EditStudentPopUp />
+                    <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.studentID)}>Remove</button>
                 </td>
               </tr>
             );

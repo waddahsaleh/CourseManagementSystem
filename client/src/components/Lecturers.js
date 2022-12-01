@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Table from 'react-bootstrap/Table'
 import AddLecturersPopUp from './AddLecturersPopUp';
+import EditLecturerPopUp from './EditLecturerPopUp';
 import LecturerDetailPopUp from './LecturerDetailPopUp';
 
 const Lecturers = () => {
@@ -46,7 +47,8 @@ const Lecturers = () => {
                 <td>
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
                     <LecturerDetailPopUp />
-                    <button type="button" className="btn btn-outline-info m-2">Edit</button>
+                    {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
+                    <EditLecturerPopUp />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.id)}>Remove</button>
                 </td>
               </tr>
