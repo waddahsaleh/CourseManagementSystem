@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table'
 import AddCoursesPopUp from './AddCoursesPopUp';
+import CourseDetailPopUp from './CourseDetailPopUp'
 import Axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom';
 
@@ -51,9 +52,10 @@ const Courses = () => {
                 <td>{item.professor}</td>
                 <td>{item.department}</td>
                 <td>
-                    <button type="button" className="btn btn-outline-dark m-2">Details</button>
+                    {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
+                    {/* <CourseDetailPopUp /> */}
                     <button type="button" className="btn btn-outline-info m-2">Edit</button>
-                        <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.courseID)}>Remove</button>
+                    <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.courseID)}>Remove</button>
                 </td>
               </tr>
             );
