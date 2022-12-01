@@ -93,11 +93,11 @@ app.post('/addCourse', (req, res) => {
     const courseID = null
     const courseCode = req.body.courseCode
     const courseName = req.body.courseName
-    const professor = req.body.professor
+    const lecturer = req.body.lecturer
     const department = req.body.department
 
     db.query(
-        `INSERT INTO course VALUES (?, ?, ?, ?, ?)`, [courseID, courseCode, courseName, professor, department],
+        `INSERT INTO course VALUES (?, ?, ?, ?, ?)`, [courseID, courseCode, courseName, lecturer, department],
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -169,6 +169,52 @@ app.post('/getStudent', (req, res) => {
         })
 })
 
+
+
+app.post('/addLecturer', (req, res) => {
+    const lecturerID = null
+    const firstName = req.body.firstName
+    const lastName = req.body.lastName
+    const department = req.body.department
+    const salary = req.body.salary
+
+    console.log(firstName)
+    console.log(lastName)
+    console.log(department)
+    console.log(salary)
+
+    db.query(
+        `INSERT INTO lecturer VALUES (?, ?, ?, ?)`, [lecturerID, firstName, lastName, department, salary],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            res.send(result)
+        })
+})
+
+app.post('/deleteLecturer', (req, res) => {
+    const lecturerID = req.body.lecturerID
+    db.query(
+        `DELETE FROM lecturer WHERE professorID = ?`, [lecturerID],
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            res.send(result)
+        })
+})
+
+app.post('/getLecturer', (req, res) => {
+    db.query(
+        `SELECT * FROM lecturer`,
+        (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            res.send(result)
+        })
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

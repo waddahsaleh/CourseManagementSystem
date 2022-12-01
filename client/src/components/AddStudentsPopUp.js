@@ -30,10 +30,12 @@ const StudentsPopUp = () => {
     };
 
     const handleSubmit = async (e) => {
+        console.log("CLIKED")
         e.preventDefault();
 
         const studentLog = {
-            studentID: studentID, firstName: firstName,
+            studentID: studentID,
+            firstName: firstName,
             lastName: lastName,
             program: program
         };
@@ -59,31 +61,32 @@ const StudentsPopUp = () => {
 
                 <Modal.Body>
                     <form method='post'>
-                        {/* <div class="form-group">
-                            <div class="col-auto">
-                                <label htmlFor="studentID" class="col-form-label">Student ID</label>
-                            </div>
-                            <div class="col-auto">
-                                <input type="text" id="studentID" class="form-control"/>
-                            </div>
-                        </div> */}
-
                         <div class="form-group">
                             <div class="col-auto">
-                                <label htmlFor="fname" class="col-form-label">First Name</label>
+                                <label htmlFor="firstName" class="col-form-label">First Name</label>
                             </div>
                             <div class="col-auto">
                                 
-                                <input name="firstName" type="text" id="fname" class="form-control"/>
+                                <input 
+                                    name="firstName" 
+                                    type="text" 
+                                    id="firstName" 
+                                    class="form-control"
+                                    onChange={handleChange}/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-auto">
-                                <label htmlFor="lname" class="col-form-label">Last Name</label>
+                                <label htmlFor="lastName" class="col-form-label">Last Name</label>
                             </div>
                             <div class="col-auto">
-                                <input name="lastName" type="text" id="lname" class="form-control"/>
+                                <input 
+                                    name="lastName" 
+                                    type="text" 
+                                    id="lastName" 
+                                    class="form-control"
+                                    onChange={handleChange}/>
                             </div>
                         </div>
 
@@ -92,7 +95,12 @@ const StudentsPopUp = () => {
                                 <label htmlFor="program" class="col-form-label">Student Program</label>
                             </div>
                             <div class="col-auto">
-                                <input name="program" type="text" id="program" class="form-control"/>
+                                <input
+                                    name="program" 
+                                    type="text" 
+                                    id="program"
+                                    class="form-control"
+                                    onChange={handleChange}/>
                             </div>
                         </div>
                     </form>

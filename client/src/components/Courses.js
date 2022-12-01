@@ -18,7 +18,7 @@ const Courses = () => {
                     courseID: item.courseID,
                     courseCode: item.courseCode,
                     courseName: item.courseName,
-                    professor: item.professor,
+                    lecturer: item.lecturer,
                     department: item.department
                 }])
             })
@@ -50,7 +50,7 @@ const Courses = () => {
                 <tr key={item.courseID}>
                 <td>{item.courseCode}</td>
                 <td>{item.courseName}</td>
-                <td>{item.professor}</td>
+                <td>{item.lecturer}</td>
                 <td>{item.department}</td>
                 <td>
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}

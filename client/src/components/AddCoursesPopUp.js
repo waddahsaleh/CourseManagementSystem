@@ -12,7 +12,7 @@ const CoursesPopUp = () => {
 
     const [courseCode, setCourseCode] = useState('')
     const [courseName, setCourseName] = useState('')
-    const [professor, setProfessor] = useState('')
+    const [lecturer, setLecturer] = useState('')
     const [department, setDepartment] = useState('')
 
 
@@ -31,8 +31,8 @@ const CoursesPopUp = () => {
             setCourseName(event.target.value)
         }
 
-        else if (event.target.name === "professor") {
-            setProfessor(event.target.value)
+        else if (event.target.name === "lecturer") {
+            setLecturer(event.target.value)
         }
 
         else if (event.target.name === "department") {
@@ -50,7 +50,7 @@ const CoursesPopUp = () => {
 
         const courseLog = {
             courseCode: courseCode, courseName: courseName,
-            professor: professor,
+            lecturer: lecturer,
             department: department
         };
 
@@ -106,13 +106,13 @@ const CoursesPopUp = () => {
 
                         <div class="form-group">
                             <div class="col-auto">
-                                <label htmlFor="professor" class="col-form-label">Professor:</label>
+                                <label htmlFor="lecturer" class="col-form-label">Lecturer:</label>
                             </div>
                             <div class="col-auto">
                                 <input 
-                                    name="professor"
+                                    name="lecturer"
                                     type="text" 
-                                    id="professor" 
+                                    id="lecturer" 
                                     class="form-control"
                                     onChange={handleChange}/>
                             </div>

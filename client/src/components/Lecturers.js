@@ -1,55 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table'
 import AddLecturersPopUp from './AddLecturersPopUp';
 import EditLecturerPopUp from './EditLecturerPopUp';
 import LecturerDetailPopUp from './LecturerDetailPopUp';
+import Axios from 'axios'
 
 const Lecturers = () => {
-    const data = [
-        {
-           id: 1,
-           fName:"Ramiro",
-           lName:"Liscano",
-           program:"Software Engineering",
-           salary: "$100,000"
-        },
-        {
-            id: 2,
-            fName:"Khalid",
-            lName:"Hafeez",
-            program:"Software Engineering",
-            salary: "$200,000"
-        },
-        {
-            id: 3,
-            fName:"Maruf",
-            lName:"Maruf",
-            program:"Software Engineering",
-            salary: "$10,000"
-        }
-    ]
+    const [lecturer, setLecturer] = useState([])
 
-    const [list, setList] = useState(data);
 
-    const deleteEmployee = (id) => {
-        return setList([...list.filter((item) => item.id !== id)]);
+    useEffect(() => {
+        Axios.post('http://localhost:5000/getLecturer').then((response) => {
+            response.data.map((item) => {
+                setLecturer((prevState) => [...prevState, {
+                    lecturerID: item.lecturerID,
+                    firstName: item.firstName,
+                    lastName: item.lastName,
+                    program: item.program
+                }])
+            })
+        }).catch(error => {
+            console.log(error.response)
+        });
+    }, [])
+
+    const deleteEmployee = (lecturerID) => {
+        return setLecturer([...lecturer.filter((item) => item.lecturerID !== lecturerID)]);
     };
 
     const renderRow = () => {
-        const rows = list.map((item) => {
+        const rows = lecturer.map((item) => {
             return (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.fName}</td>
-                <td>{item.lName}</td>
-                <td>{item.program}</td>
+                <tr key={item.lecturerID}>
+                <td>{item.lecturerID}</td>
+                <td>{item.firstName}</td>
+                <td>{item.lastName}</td>
+                <td>{item.department}</td>
                 <td>{item.salary}</td>
                 <td>
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
                     <LecturerDetailPopUp />
                     {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
                     <EditLecturerPopUp />
-                    <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.id)}>Remove</button>
+                    <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.lecturerID)}>Remove</button>
                 </td>
               </tr>
             );
