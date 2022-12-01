@@ -1,47 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table'
 import AddCoursesPopUp from './AddCoursesPopUp';
+import Axios from 'axios'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Courses = () => {
-    const data = [
-        {
-           code:"SOFE 3600U",
-           course:"Software Design1",
-           lecturer:"Ramiro Liscano1",
-           dept:"Software Engineering1"
-        },
-        {
-            code:"SOFE 3500U",
-            course:"Software Design2",
-            lecturer:"Ramiro Liscano2",
-            dept:"Software Engineering2"
-        },
-        {
-            code:"SOFE 3400U",
-            course:"Software Design3",
-            lecturer:"Ramiro Liscano3",
-            dept:"Software Engineering3"
-        }
-    ]
+    const navigate = useNavigate()
 
-    const [list, setList] = useState(data);
+    const [course, setCourse] = useState([])
 
-    const deleteEmployee = (code) => {
-        return setList([...list.filter((item) => item.code !== code)]);
+    useEffect(() => {
+        Axios.post('http://localhost:5000/getCourse').then((response) => {
+            response.data.map((item) => {
+                setCourse((prevState) => [...prevState, {
+                    courseID: item.courseID,
+                    courseCode: item.courseCode,
+                    courseName: item.courseName,
+                    professor: item.professor,
+                    department: item.department
+                }])
+            })
+        }).catch(error => {
+            console.log(error.response)
+        });
+    }, [])
+    console.log("course")
+    console.log(course)
+
+    const deleteEmployee = async (courseID) => {
+        const sendCourseID = {courseID: courseID}
+        const response = await Axios.post(
+            "http://localhost:5000/deleteCourse",
+            sendCourseID
+        );
+        return setCourse([...course.filter((item) => item.courseID !== courseID)]);
+
+        // window.location.reload()
+
+
     };
+    console.log("deleteEmployee")
+    console.log(deleteEmployee)
 
     const renderRow = () => {
-        const rows = list.map((item) => {
+        const rows = course.map((item) => {
             return (
-              <tr key={item.code}>
-                <td>{item.code}</td>
-                <td>{item.course}</td>
-                <td>{item.lecturer}</td>
-                <td>{item.dept}</td>
+                <tr key={item.courseID}>
+                <td>{item.courseCode}</td>
+                <td>{item.courseName}</td>
+                <td>{item.professor}</td>
+                <td>{item.department}</td>
                 <td>
                     <button type="button" className="btn btn-outline-dark m-2">Details</button>
                     <button type="button" className="btn btn-outline-info m-2">Edit</button>
-                    <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.code)}>Remove</button>
+                        <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.courseID)}>Remove</button>
                 </td>
               </tr>
             );

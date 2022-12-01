@@ -1,12 +1,53 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Axios from 'axios'
 
 const StudentsPopUp = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+
+    const [studentID, setStudentID] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [program, setProgram] = useState('')
+
+    const handleChange = (event) => {
+
+        if (event.target.name === "firstName") {
+            setFirstName(event.target.value)
+        }
+
+        else if (event.target.name === "lastName") {
+            setLastName(event.target.value)
+        }
+
+        else if (event.target.name === "program") {
+            setProgram(event.target.value)
+        }
+
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const studentLog = {
+            studentID: studentID, firstName: firstName,
+            lastName: lastName,
+            program: program
+        };
+
+        const response = await Axios.post(
+            "http://localhost:5000/addStudent",
+            studentLog
+        );
+
+
+        setShow(false)
+        window.location.reload()
+    }
+
     return (
         <>
             <button type="button" className="btn btn-outline-success btn-sm my-2" onClick={handleShow}>Add Student</button>
@@ -18,21 +59,22 @@ const StudentsPopUp = () => {
 
                 <Modal.Body>
                     <form method='post'>
-                        <div class="form-group">
+                        {/* <div class="form-group">
                             <div class="col-auto">
                                 <label htmlFor="studentID" class="col-form-label">Student ID</label>
                             </div>
                             <div class="col-auto">
                                 <input type="text" id="studentID" class="form-control"/>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div class="form-group">
                             <div class="col-auto">
                                 <label htmlFor="fname" class="col-form-label">First Name</label>
                             </div>
                             <div class="col-auto">
-                                <input type="text" id="fname" class="form-control"/>
+                                
+                                <input name="firstName" type="text" id="fname" class="form-control"/>
                             </div>
                         </div>
 
@@ -41,7 +83,7 @@ const StudentsPopUp = () => {
                                 <label htmlFor="lname" class="col-form-label">Last Name</label>
                             </div>
                             <div class="col-auto">
-                                <input type="text" id="lname" class="form-control"/>
+                                <input name="lastName" type="text" id="lname" class="form-control"/>
                             </div>
                         </div>
 
@@ -50,14 +92,14 @@ const StudentsPopUp = () => {
                                 <label htmlFor="program" class="col-form-label">Student Program</label>
                             </div>
                             <div class="col-auto">
-                                <input type="text" id="program" class="form-control"/>
+                                <input name="program" type="text" id="program" class="form-control"/>
                             </div>
                         </div>
                     </form>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button type="button" className="btn btn-primary">Add</button> 
+                    <button type="submit" onClick={handleSubmit } className="btn btn-primary">Add</button> 
                 </Modal.Footer>
             </Modal>
         </>

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CoursesPopUp = () => {
+    const navigate = useNavigate()
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -12,6 +14,7 @@ const CoursesPopUp = () => {
     const [courseName, setCourseName] = useState('')
     const [professor, setProfessor] = useState('')
     const [department, setDepartment] = useState('')
+
 
 
     const handleChange =  (event) => {
@@ -42,28 +45,26 @@ const CoursesPopUp = () => {
 
     };
 
-    const handleSubmit =  () => {
+    const handleSubmit =  async (e) => {
+        e.preventDefault();
 
-        console.log("CLicked")
-        // e.preventDefault();
+        const courseLog = {
+            courseCode: courseCode, courseName: courseName,
+            professor: professor,
+            department: department
+        };
 
-        // console.log(courseCode)
-        // console.log(courseName)
-        // console.log(professor)
-        // console.log(department)
-        // const courseLog = {
-        //     courseCode: courseCode, courseName: courseName,
-        //     professor: professor,
-        //     department: department
-        // };
+        const response = await Axios.post(
+            "http://localhost:5000/addCourse",
+            courseLog
+        );
 
-        // const response = await Axios.post(
-        //     "http://localhost:5000/addCourse",
-        //     courseLog
-        // );
+
+        setShow(false)
+        window.location.reload()
     }
 
-    const handleClick = () => alert(courseCode);
+
     return (
         <>
             <button type="button" className="btn btn-outline-success btn-sm my-2" onClick={handleShow}>Add Course</button>
@@ -73,7 +74,7 @@ const CoursesPopUp = () => {
                     <Modal.Title>Add Course</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit = {handleClick}>
+                    <form >
                         <div class="form-group">
                             <div class="col-auto">
                                 <label htmlFor="courseCode" class="col-form-label">Course Code:</label>
