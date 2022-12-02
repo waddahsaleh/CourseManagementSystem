@@ -22,7 +22,7 @@ After installing VS-Code:
    14. In the second terminal write "npm run dev" and run
    15. To stop code go into each terminal respectively and press ctrl+c
    16. Next, open MySQL Workbench, create a new connection, and create a database to store the tables given in the next step.
-   16. Copy all the SQL files in the folder SQLForCourseManagementSystem in a schema created in your MYSQL workbench
+   16. Copy everything inside the file named SQL.sql
    18. after this is done go back into you project in VS-code and in the backend/dbFiles/dbConfig.js file and update the host, user, and password to the ones set by your own Workbench
 
 
