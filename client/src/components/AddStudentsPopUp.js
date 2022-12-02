@@ -56,7 +56,7 @@ const StudentsPopUp = () => {
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Course</Modal.Title>
+                    <Modal.Title>Add Student</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
