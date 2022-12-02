@@ -2,9 +2,9 @@ import './App.css';
 import { Route, Routes } from "react-router-dom"
 import NavBar from './components/NavBar';
 import Home from './components/Home';
-import Courses from './components/Courses';
-import Students from './components/Students';
-import Lecturers from './components/Lecturers';
+import Courses from './components/course/Courses';
+import Students from './components/student/Students';
+import Lecturers from './components/lecturer/Lecturers';
 import Axios from 'axios'
 import { useEffect, useState } from 'react';
 function App() {

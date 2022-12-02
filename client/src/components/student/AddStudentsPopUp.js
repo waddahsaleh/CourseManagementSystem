@@ -30,7 +30,6 @@ const StudentsPopUp = () => {
     };
 
     const handleSubmit = async (e) => {
-        console.log("CLIKED")
         e.preventDefault();
 
         const studentLog = {

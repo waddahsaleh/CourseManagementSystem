@@ -16,7 +16,8 @@ const Lecturers = () => {
                     lecturerID: item.lecturerID,
                     firstName: item.firstName,
                     lastName: item.lastName,
-                    program: item.program
+                    department: item.department,
+                    salary: item.salary
                 }])
             })
         }).catch(error => {
@@ -24,12 +25,25 @@ const Lecturers = () => {
         });
     }, [])
 
-    const deleteEmployee = (lecturerID) => {
+    const deleteEmployee = async (lecturerID) => {
+        const sendLecturerID = { lecturerID: lecturerID }
+        const response = await Axios.post(
+            "http://localhost:5000/deleteLecturer",
+            sendLecturerID
+        );
         return setLecturer([...lecturer.filter((item) => item.lecturerID !== lecturerID)]);
+
+        // window.location.reload()
     };
+
 
     const renderRow = () => {
         const rows = lecturer.map((item) => {
+
+            const checkLecturerID = lecturer.filter((lecturer) => {
+                return lecturer.lecturerID === item.lecturerID
+            })
+
             return (
                 <tr key={item.lecturerID}>
                 <td>{item.lecturerID}</td>
@@ -41,7 +55,7 @@ const Lecturers = () => {
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
                     <LecturerDetailPopUp />
                     {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
-                    <EditLecturerPopUp />
+                        <EditLecturerPopUp lecturerInfo={checkLecturerID} />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.lecturerID)}>Remove</button>
                 </td>
               </tr>

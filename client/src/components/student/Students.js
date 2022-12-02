@@ -38,6 +38,10 @@ const Students = () => {
 
     const renderRow = () => {
         const rows = student.map((item) => {
+            const checkStudentID = student.filter((student) => {
+                return student.studentID === item.studentID
+            })
+
             return (
               <tr key={item.studentID}>
                 <td>{item.studentID}</td>
@@ -48,7 +52,7 @@ const Students = () => {
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
                     <StudentDetailPopUp />
                     {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
-                    <EditStudentPopUp />
+                        <EditStudentPopUp studentInfo={checkStudentID } />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.studentID)}>Remove</button>
                 </td>
               </tr>
@@ -62,7 +66,7 @@ const Students = () => {
                         <th>Student ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Student Program</th>
+                        <th>Program</th>
                         <th>Edit</th>
                     </tr>
                 </thead>

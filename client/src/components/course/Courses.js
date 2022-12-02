@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table'
-import AddCoursesPopUp from './AddCoursesPopUp';
+import AddCoursesPopUp from './CourseDetailPopUp';
 import CourseDetailPopUp from './CourseDetailPopUp'
 import Axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -8,7 +8,6 @@ import EditCoursePopUp from './EditCoursePopUp';
 
 const Courses = () => {
     const navigate = useNavigate()
-
     const [course, setCourse] = useState([])
 
     useEffect(() => {
@@ -26,8 +25,6 @@ const Courses = () => {
             console.log(error.response)
         });
     }, [])
-    console.log("course")
-    console.log(course)
 
     const deleteEmployee = async (courseID) => {
         const sendCourseID = {courseID: courseID}
@@ -39,24 +36,29 @@ const Courses = () => {
 
         // window.location.reload()
 
-
-    };
-    console.log("deleteEmployee")
-    console.log(deleteEmployee)
-
+    }
+    
     const renderRow = () => {
         const rows = course.map((item) => {
+
+            const checkCourseID = course.filter((course) => {
+                return course.courseID === item.courseID
+            })
+            // setCoID(checkCourseID)
+            console.log("checkCourseID")
+            console.log(checkCourseID)
             return (
                 <tr key={item.courseID}>
                 <td>{item.courseCode}</td>
                 <td>{item.courseName}</td>
                 <td>{item.lecturer}</td>
                 <td>{item.department}</td>
+                
                 <td>
                     {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
                     <CourseDetailPopUp />
                     {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
-                    <EditCoursePopUp />
+                        <EditCoursePopUp courseID={item.courseID} courseInfo={checkCourseID} />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.courseID)}>Remove</button>
                 </td>
               </tr>
@@ -69,8 +71,8 @@ const Courses = () => {
                     <tr>
                         <th>Course Code</th>
                         <th>Course Name</th>
-                        <th>Professor</th>
-                        <th>Course Department</th>
+                        <th>Lecturer</th>
+                        <th>Department</th>
                         <th>Edit</th>
                     </tr>
                 </thead>

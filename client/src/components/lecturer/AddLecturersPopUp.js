@@ -133,7 +133,7 @@ const LecturersPopUp = () => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <button type="submit" onChange={ handleSubmit} className="btn btn-primary">Add</button> 
+                    <button type="submit" onClick={ handleSubmit} className="btn btn-primary">Add</button> 
                 </Modal.Footer>
             </Modal>
         </>
