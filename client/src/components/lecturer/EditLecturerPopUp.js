@@ -10,7 +10,6 @@ const EditLecturerPopUp = ({ lecturerInfo }) => {
     const [department, setDepartment] = useState('')
     const [salary, setSalary] = useState('')
 
-    
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -26,23 +25,18 @@ const EditLecturerPopUp = ({ lecturerInfo }) => {
     }, [])
 
     const handleChange = (event) => {
-
         if (event.target.name === "firstName") {
             setFirstName(event.target.value)
         }
-
         else if (event.target.name === "lastName") {
             setLastName(event.target.value)
         }
-
         else if (event.target.name === "department") {
             setDepartment(event.target.value)
         }
-
         else if (event.target.name === "salary") {
             setSalary(event.target.value)
         }
-
     }
 
     const handleSubmit = async (e) => {
@@ -60,7 +54,6 @@ const EditLecturerPopUp = ({ lecturerInfo }) => {
             "http://localhost:5000/updateLecturer",
             lecturerLog
         );
-
 
         setShow(false)
         window.location.reload()
@@ -143,7 +136,6 @@ const EditLecturerPopUp = ({ lecturerInfo }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <button type="submit" onClick={handleSubmit} className="btn btn-primary">Finish</button> 
-
                 </Modal.Footer>
             </Modal>
         </>

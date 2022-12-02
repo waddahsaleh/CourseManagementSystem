@@ -18,24 +18,18 @@ const EditStudentPopUp = ({ studentInfo }) => {
         setFirstName(studentInfo[0].firstName)
         setLastName(studentInfo[0].lastName)
         setProgram(studentInfo[0].program)
-
     }, [])
 
     const handleChange = (event) => {
-        
         if (event.target.name === "firstName") {
-        
             setFirstName(event.target.value)
         }
-
         else if (event.target.name === "lastName") {
             setLastName(event.target.value)
         }
-
         else if (event.target.name === "program") {
             setProgram(event.target.value)
         }
-
     };
 
     const handleSubmit = async (e) => {
@@ -52,7 +46,6 @@ const EditStudentPopUp = ({ studentInfo }) => {
             "http://localhost:5000/updateStudent",
             updatedStudentLog
         )
-
         window.location.reload()
     }
 

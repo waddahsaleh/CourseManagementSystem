@@ -14,19 +14,15 @@ const StudentsPopUp = () => {
     const [program, setProgram] = useState('')
 
     const handleChange = (event) => {
-
         if (event.target.name === "firstName") {
             setFirstName(event.target.value)
         }
-
         else if (event.target.name === "lastName") {
             setLastName(event.target.value)
         }
-
         else if (event.target.name === "program") {
             setProgram(event.target.value)
         }
-
     };
 
     const handleSubmit = async (e) => {

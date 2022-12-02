@@ -1,13 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Table from 'react-bootstrap/Table'
 import AddStudentsPopUp from './AddStudentsPopUp';
 import StudentDetailPopUp from './StudentDetailPopUp';
 import Axios from 'axios'
 import EditStudentPopUp from './EditStudentPopUp';
+import { CourseStudentListContext } from '../../CourseStudentListContext';
 
 const Students = () => {
 
     const [student, setStudent] = useState([])
+    const { studentID, setStudentID, courses, setCourses,
+        registeredCourses, setRegisteredCourses } = useContext(CourseStudentListContext) 
 
     useEffect(() => {
         Axios.post('http://localhost:5000/getStudent').then((response) => {
@@ -49,9 +52,15 @@ const Students = () => {
                 <td>{item.lastName}</td>
                 <td>{item.program}</td>
                 <td>
-                    {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
-                    <StudentDetailPopUp />
-                    {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
+                        <StudentDetailPopUp
+                            studentInfo={checkStudentID}
+                            studentID={studentID}
+                            setStudentID={setStudentID}
+                            courses={courses}
+                            setCourses={setCourses}   
+                            registeredCourses={registeredCourses}
+                            setRegisteredCourses={setRegisteredCourses}
+                        />
                         <EditStudentPopUp studentInfo={checkStudentID } />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.studentID)}>Remove</button>
                 </td>

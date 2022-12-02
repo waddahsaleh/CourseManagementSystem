@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Table from 'react-bootstrap/Table'
 import AddCoursesPopUp from './AddCoursesPopUp';
 import CourseDetailPopUp from './CourseDetailPopUp'
 import Axios from 'axios'
 import { Navigate, useNavigate } from 'react-router-dom';
 import EditCoursePopUp from './EditCoursePopUp';
+import { CourseStudentListContext } from '../../CourseStudentListContext';
 
 const Courses = () => {
     const navigate = useNavigate()
     const [course, setCourse] = useState([])
+    const { studentID, setStudentID, courses, setCourses } = useContext(CourseStudentListContext) 
 
     useEffect(() => {
         Axios.post('http://localhost:5000/getCourse').then((response) => {
@@ -33,31 +35,31 @@ const Courses = () => {
             sendCourseID
         );
         return setCourse([...course.filter((item) => item.courseID !== courseID)]);
-
-        // window.location.reload()
-
     }
     
     const renderRow = () => {
         const rows = course.map((item) => {
-
             const checkCourseID = course.filter((course) => {
                 return course.courseID === item.courseID
             })
-            // setCoID(checkCourseID)
-            console.log("checkCourseID")
-            console.log(checkCourseID)
+
             return (
                 <tr key={item.courseID}>
+                <td>{item.courseID}</td>
                 <td>{item.courseCode}</td>
                 <td>{item.courseName}</td>
                 <td>{item.lecturer}</td>
                 <td>{item.department}</td>
                 
                 <td>
-                    {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
-                    <CourseDetailPopUp />
-                    {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
+                        <CourseDetailPopUp         
+                            courseInfo={checkCourseID}    
+                            studentID={studentID}
+                            setStudentID={setStudentID}
+                            courses={courses}
+                            setCourses={setCourses}    
+                        />
+                        
                     <EditCoursePopUp courseID={item.courseID} courseInfo={checkCourseID} />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.courseID)}>Remove</button>
                 </td>
@@ -69,6 +71,7 @@ const Courses = () => {
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
+                        <th>Course ID</th>
                         <th>Course Code</th>
                         <th>Course Name</th>
                         <th>Lecturer</th>

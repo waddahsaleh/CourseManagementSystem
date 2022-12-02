@@ -64,11 +64,9 @@ const EditCoursePopUp = ({courseInfo }) => {
             updatedCourseLog
         );
 
-
         setShow(false)
         window.location.reload()
     }
-
 
     return (
         <>

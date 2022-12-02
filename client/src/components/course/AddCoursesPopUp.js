@@ -15,11 +15,7 @@ const CoursesPopUp = () => {
     const [lecturer, setLecturer] = useState('')
     const [department, setDepartment] = useState('')
 
-
-
     const handleChange =  (event) => {
-        // setCourseCode(event.target.value);
-
         console.log('value is:', event.target.name);
         console.log('value is:', event.target.value);
 
@@ -37,12 +33,7 @@ const CoursesPopUp = () => {
 
         else if (event.target.name === "department") {
             setDepartment(event.target.value)
-        }
-
-
-      
-       
-
+        }  
     };
 
     const handleSubmit =  async (e) => {
@@ -58,7 +49,6 @@ const CoursesPopUp = () => {
             "http://localhost:5000/addCourse",
             courseLog
         );
-
 
         setShow(false)
         window.location.reload()
@@ -85,7 +75,6 @@ const CoursesPopUp = () => {
                                     name="courseCode"
                                     id="courseCode"
                                     class="form-control"
-                                    // value={courseCode}
                                     onChange={handleChange } />
                             </div>
                         </div>
@@ -132,7 +121,6 @@ const CoursesPopUp = () => {
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Add</button> 
-                        {/* onSubmit={handleSubmit}  */}
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

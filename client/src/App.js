@@ -1,3 +1,4 @@
+import { useEffect, useState, useContext } from 'react'
 import './App.css';
 import { Route, Routes } from "react-router-dom"
 import NavBar from './components/NavBar';
@@ -6,9 +7,14 @@ import Courses from './components/course/Courses';
 import Students from './components/student/Students';
 import Lecturers from './components/lecturer/Lecturers';
 import Axios from 'axios'
-import { useEffect, useState } from 'react';
+import { CourseStudentListContext } from './CourseStudentListContext'
+
 function App() {
   const [chop, setChop] = useState("")
+
+  const [studentID, setStudentID] = useState(0)
+  const [courses, setCourses] = useState([])
+  const [registeredCourses, setRegisteredCourses] = useState([])
 
   useEffect(() => {
     Axios.post('http://localhost:5000/api').then((response) => {
@@ -26,8 +32,19 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/students" element={<Students />} />
+        <Route path="/courses" element={
+          <CourseStudentListContext.Provider value={{ studentID, setStudentID, courses, setCourses }}>
+              <Courses />
+            </CourseStudentListContext.Provider>
+          } />
+        <Route path="/students" element={
+          <CourseStudentListContext.Provider value={{
+            studentID, setStudentID, courses,
+            setCourses, registeredCourses, setRegisteredCourses
+          }}>
+            <Students />
+          </CourseStudentListContext.Provider>
+          } />
         <Route path="/lecturers" element={<Lecturers />} />
 
       </Routes>

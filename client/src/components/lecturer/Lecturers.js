@@ -8,7 +8,6 @@ import Axios from 'axios'
 const Lecturers = () => {
     const [lecturer, setLecturer] = useState([])
 
-
     useEffect(() => {
         Axios.post('http://localhost:5000/getLecturer').then((response) => {
             response.data.map((item) => {
@@ -32,8 +31,6 @@ const Lecturers = () => {
             sendLecturerID
         );
         return setLecturer([...lecturer.filter((item) => item.lecturerID !== lecturerID)]);
-
-        // window.location.reload()
     };
 
 
@@ -52,10 +49,8 @@ const Lecturers = () => {
                 <td>{item.department}</td>
                 <td>{item.salary}</td>
                 <td>
-                    {/* <button type="button" className="btn btn-outline-dark m-2">Details</button> */}
-                    <LecturerDetailPopUp />
-                    {/* <button type="button" className="btn btn-outline-info m-2">Edit</button> */}
-                        <EditLecturerPopUp lecturerInfo={checkLecturerID} />
+                    {/* <LecturerDetailPopUp /> */}
+                    <EditLecturerPopUp lecturerInfo={checkLecturerID} />
                     <button type="button" className="btn btn-outline-danger m-2" onClick={() => deleteEmployee(item.lecturerID)}>Remove</button>
                 </td>
               </tr>
@@ -87,7 +82,6 @@ const Lecturers = () => {
         <div className='container'>
             <div className='my-5'>
                 <AddLecturersPopUp />
-
                 {renderRow()}
             </div>
         </div>

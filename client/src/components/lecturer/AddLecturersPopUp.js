@@ -4,7 +4,7 @@ import Axios from 'axios'
 
 const LecturersPopUp = () => {
 
-    const [lecturerID, setLecturerID] = useState('')
+    const [lecturerID, setLecturerID] = useState(0)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [department, setDepartment] = useState('')
@@ -32,15 +32,10 @@ const LecturersPopUp = () => {
         else if (event.target.name === "salary") {
             setSalary(event.target.value)
         }
-
     }
 
     const handleSubmit = async (e) => {
-        console.log("CLIKED")
-
         e.preventDefault();
-
-        console.log("CLICKED")
 
         const lecturerLog = {
             firstName: firstName,
@@ -54,15 +49,10 @@ const LecturersPopUp = () => {
             lecturerLog
         );
 
-
         setShow(false)
         window.location.reload()
     }
 
-    console.log(firstName)
-    console.log(lastName)
-    console.log(department)
-    console.log(salary)
     return (
         <>
             <button type="button" className="btn btn-outline-success btn-sm my-2" onClick={handleShow}>Add Lecturer</button>
@@ -131,7 +121,6 @@ const LecturersPopUp = () => {
                         </div>
                     </form>
                 </Modal.Body>
-
                 <Modal.Footer>
                     <button type="submit" onClick={ handleSubmit} className="btn btn-primary">Add</button> 
                 </Modal.Footer>
