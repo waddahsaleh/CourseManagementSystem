@@ -12,7 +12,7 @@ After installing VS-Code:
    4. Paste link into the search bar
    5. Select folder location to save project in
    6. Open project
-   7. Next, open MySQL Workbench, create a new connection, and create a database inside a query file using this command "CREATE DATABASE coursemanagement"
+   7. Next, open MySQL Workbench, create a new connection, and create a database inside a query file using this command "CREATE DATABASE coursemanagement;"
    to store the tables given in the next step.
    8. Copy everything inside the file named SQL.sql and copy and execute it inside a query file inside MySQL Workbench, also making sure that 
    you have the new database selected. You should now see 3 tables created. 
