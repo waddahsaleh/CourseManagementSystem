@@ -1,92 +1,12 @@
-
-
 const express = require('express')
 const db = require('./dbConfig')
 const mysql = require('mysql')
 const cors = require('cors')
-
 const app = express()
 const port = 5000
 
-// const course = require('./course.json')
-// const fs = require('fs')
-
-
-
 app.use(cors());
 app.use(express.json())
-
-
-// const jsonReader = (filePath, cb) => {
-//     fs.readFile(filePath, 'utf-8', (err, fileData) => {
-//         if (err) {
-//             return cb && cb(err)
-//         }
-//         try {
-//             const object = JSON.parse(fileData)
-//             return cb && cb(null, object)
-//         } catch (err) {
-//             return cb && cb(err)
-//         }
-//     })
-// }
-
-
-// jsonReader('./course.json', (err, data) => {
-//     if (err) {
-//         console.log(err)
-//     } else {
-//         data.courseCode += 1
-//         // fs.writeFile('./course.json', JSON.stringify(data, null, 2), err => {
-//         //     if (err) {
-//         //         console.log(err)
-//         //     }
-//         // })
-//     }
-// })
-
-// try {
-//     const jsonString = fs.readFileSync('./course.json', 'utf-8')
-//     const courseInfo = JSON.parse(jsonString)
-//     console.log(courseInfo[0].courseName)
-// } catch (err) {
-//     console.log(err)
-// }
-
-
-
-
-// const newObject = {
-//     courseCode: "456",
-//     courseName: "algorithms",
-//     professor: "masoud",
-//     department: "SOFE"
-// }
-
-// const jsonString = JSON.stringify(newObject)
-// console.log(jsonString)
-
-// // fs.writeFile('./course.json', JSON.stringify(newObject, null, 2), err => {
-// // if (err) {
-// //         console.log(err)
-// // } else {
-// //     console.log("Worked")
-// //     }
-    
-// // })
-
-
-
-
-app.post('/api', (req, res) => {
-    res.send('Hello World!')
-})
-
-
-
-// const data = JSON.stringify(client)
-
-// console.log(data)
 
 
 app.post('/addCourse', (req, res) => {
@@ -143,7 +63,6 @@ app.post('/updateCourse', (req, res) => {
             if (err) {
                 console.log(err)
             }
-            // res.send(result)
         })
 
     db.query(
@@ -152,7 +71,6 @@ app.post('/updateCourse', (req, res) => {
             if (err) {
                 console.log(err)
             }
-            // res.send(result)
         })
 
     db.query(

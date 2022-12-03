@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table'
 import AddCoursesPopUp from './AddCoursesPopUp';
 import CourseDetailPopUp from './CourseDetailPopUp'
 import Axios from 'axios'
-import { Navigate, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import EditCoursePopUp from './EditCoursePopUp';
 import { CourseStudentListContext } from '../../CourseStudentListContext';
 

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios'
 import Table from 'react-bootstrap/Table'
-import { all } from 'sequelize/dist/lib/operators';
 
-const CourseDetailPopUp = ({ courseInfo, studentID, setStudentID, courses, setCourses }) => {
+const CourseDetailPopUp = ({ courseInfo, courses }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);

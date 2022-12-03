@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table'
 import AddLecturersPopUp from './AddLecturersPopUp';
 import EditLecturerPopUp from './EditLecturerPopUp';
-import LecturerDetailPopUp from './LecturerDetailPopUp';
+// import LecturerDetailPopUp from './LecturerDetailPopUp';
 import Axios from 'axios'
 
 const Lecturers = () => {
