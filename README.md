@@ -1,6 +1,6 @@
 Software Design and Architecture Project: Course Management System
 
-Group 14: Zubair Islam (100778152), Hanzalah Patel (), Ziyad Khan (). 
+Group 14: Zubair Islam (100778152), Hanzalah Patel (100785622), Ziyad Khan (). 
 
 To run code: 
 
