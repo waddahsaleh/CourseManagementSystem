@@ -19,13 +19,13 @@ After installing VS-Code:
    9. After this is done go back into your project in VS-code and in the server/dbConfig.js file, you can update the host, user, and 
    password to the ones set by your own Workbench.
    10. Next, open the terminal inside VS-code by navigating to the top of your screen and selecting terminal, then selecting new terminal
-   11. Then navigate back to terminal at the op of your screen and select split terminal
+   11. Then navigate back to terminal at the top of your screen and select split terminal
    12. In the first terminal write "cd client"
    13. Then write "npm install" and run
    14. In the second terminal write "cd server"
    15. Then write "npm install" and run
-   16. Go back to the first terminal and write "npm start" and run
-   17. In the second terminal write "npm run dev" and run
+   16. Go back to the first terminal where you are in the client directory and write "npm start" and run
+   17. In the second terminal where you are in the server directory and write "npm run dev" and run
    18. To stop code go into each terminal respectively and press ctrl+c
    
 
